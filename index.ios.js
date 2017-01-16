@@ -1,8 +1,3 @@
-/** * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -45,7 +40,8 @@ class TimerPage extends Component {
     const whoosh = new Sound('efx_finish.wav', Sound.MAIN_BUNDLE, (error) => {
       if (error) {
         console.log('failed to load the sound', error);
-      } else { // loaded successfully
+      } else {
+        // loaded successfully
         console.log('duration in seconds: ' + whoosh.getDuration() +
           'number of channels: ' + whoosh.getNumberOfChannels());
 
@@ -68,6 +64,7 @@ class TimerPage extends Component {
     time = this.props.minutes * 60 * 1000 - (new Date().getTime() - startTime);
     rm = Math.floor((time) / (1000 * 60));
     rs = Math.floor((time) / 1000) % 60;
+
     if (time < 0) {
       rm = '+' + ((rm + (rs == 0 ? 0 : 1))* -1);
       rs *= -1;
@@ -75,8 +72,8 @@ class TimerPage extends Component {
 
     this.setState({
       time: time,
-      minutes: rm, // time >= 0 ? Math.floor(Math.abs(time) / (1000 * 60)) : "+" + Math.ceil(Math.abs(time) / (1000 * 60)),
-      seconds: rs  // time >= 0 ? Math.floor(Math.abs(time) / 1000) % 60 : Math.ceil(Math.abs(time) / 1000) % 60
+      minutes: rm,
+      seconds: rs
     });
     
     if (!this.state.timeUp && this.state.minutes == 0 && this.state.seconds == 0) {
